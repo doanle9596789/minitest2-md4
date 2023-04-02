@@ -8,7 +8,7 @@
 <h1><%= "Painting Manager" %>
 </h1>
 <br/>
-<a href="http://localhost:8080/painting">Painting</a>
-<a href="http://localhost:8080/category">Category</a>
+<a href="http://localhost:8080/paintings">Painting</a>
+<a href="http://localhost:8080/categorys">Category</a>
 </body>
 </html>

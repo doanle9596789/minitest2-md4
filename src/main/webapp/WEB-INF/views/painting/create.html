@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create </title>
+</head>
+<body>
+<h1>Painting customer</h1>
+<p>
+    <a href="/paintings">Painting list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-painting}" th:object="${painting}" method="post">
+    <table>
+        <tr>
+            <td>:Painting Code</td>
+            <td><input type="text" th:field="*{paintingCode}"/></td>
+<!--            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>-->
+        </tr>
+        <tr>
+            <td>Height:</td>
+            <td><input type="text" th:field="*{height}"/></td>
+        </tr>
+        <tr>
+            <td>Width:</td>
+            <td><input type="text" th:field="*{width}"/></td>
+        </tr>
+        <tr>
+            <td>Material:</td>
+            <td><input type="text" th:field="*{material}"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="p : ${categoris}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create painting"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

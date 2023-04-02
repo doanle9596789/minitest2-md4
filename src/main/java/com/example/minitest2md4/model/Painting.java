@@ -1,10 +1,13 @@
 package com.example.minitest2md4.model;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Painting {
+public class Painting implements Validator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -94,5 +97,19 @@ public class Painting {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        Painting painting= (Painting) target;
+        String paintingCode=painting.getPaintingCode();
+        if (paintingCode==null|| " ".equals(paintingCode)){
+            errors.rejectValue("paintingCode","paintingCode.errors","enter PaintingCode");
+        }
     }
 }

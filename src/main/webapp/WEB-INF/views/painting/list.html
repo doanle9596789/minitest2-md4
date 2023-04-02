@@ -9,7 +9,14 @@
 <br>
 <br>
 <br><a href="http://localhost:8080">Home</a>
-<h1>Customers</h1>
+<h1>Customers</h1><br>
+<form>
+    <input placeholder="Enter Painting..." name="search" type="text"/>
+    <select name="search2" th:object="${categoris}">
+        <option th:each="c :${categoris}" th:value="${c.id}" th:text="${c.name}"></option>
+    </select>
+    <button type="submit">SEARCH</button>
+</form>
 <table border="1">
     <tr>
         <th>Painting Code</th>

@@ -1,6 +1,9 @@
 package com.example.minitest2md4.configuration;
 
 
+import com.example.minitest2md4.formatter.PaintingFormatter;
+import com.example.minitest2md4.model.Painting;
+import com.example.minitest2md4.service.Painting.PaintingService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -9,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -111,5 +115,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
 
+    }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new PaintingFormatter(applicationContext.getBean(PaintingService.class)));
     }
 }
