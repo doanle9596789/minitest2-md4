@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create-painting">Create new Painting</a>
+<br>
+<br>
+<br><a href="http://localhost:8080">Home</a>
+<h1>Customers</h1>
+<table border="1">
+    <tr>
+        <th>Painting Code</th>
+        <th>Height</th>
+        <th>Width</th>
+        <th>Material</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th colspan="2">Action</th>
+
+    </tr>
+    <th:block th:each="painting : ${paintings}">
+        <tr>
+            <td th:text="${painting.paintingCode}"></td>
+            <td th:text="${painting.height}"></td>
+            <td th:text="${painting.width}"></td>
+            <td th:text="${painting.height}"></td>
+            <td th:text="${painting.description}"></td>
+            <td th:text="${painting.price}"></td>
+            <td th:if="${painting.category}" th:text="${painting.category.name}"></td>
+            <td th:unless="${painting.category}"></td>
+            <td><a th:href="@{/edit-painting/__${painting.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-painting/__${painting.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
